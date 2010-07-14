@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android">
+<group android:menuCategory="container" android:id="@+id/menu_main" android:enabled="true" android:visible="true"><item android:id="@+id/add_activity" android:title="@string/add_activity"></item><item android:id="@+id/see_report" android:title="@string/see_report"></item>
+
+
+<item android:id="@+id/edit_activity" android:title="@string/edit_activity"></item>
+<item android:id="@+id/settings_main" android:title="@string/settings_main"></item>
+
+<item android:id="@+id/quit" android:title="@string/quit"></item></group>
+
+</menu>

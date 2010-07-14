@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="com.random.randomproject"
+      android:versionCode="1"
+      android:versionName="1.0">
+    <application android:icon="@drawable/icon" android:label="@string/app_name">
+        <activity android:name=".Main"
+                  android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+    <activity android:name="TKAddActivity"></activity>
+    <activity android:name="TKReport"></activity>
+    <activity android:name="TKEditActivity"></activity>
+    <activity android:name="TKSettings"></activity>
+    <activity android:name="TKUpdateActivity"></activity>
+    <activity android:name="TKUpdateActivityType"></activity>
+    <activity android:name="TKAddActivityType" android:launchMode="standard"></activity>
+    <activity android:name="TKShowReport"></activity>
+</application>
+    <uses-sdk android:minSdkVersion="8" />
+
+</manifest> 

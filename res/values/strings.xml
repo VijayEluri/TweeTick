@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="quit">Quit</string>
+    <string name="settings_main">Settings</string>
+    <string name="edit_activity">Edit Activity</string>
+    <string name="see_report">See Report</string>
+    <string name="hello">Hello RandomProject User!</string>
+    <string name="app_name">Random Project</string>
+<item type="string" format="color|string" name="add_activity">Add Activity</item>
+</resources>

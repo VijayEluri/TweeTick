@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TableLayout android:id="@+id/TableLayout01" android:layout_width="fill_parent" android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android"><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/setscr_text" android:text="Settings:"></TextView>
+
+<Spinner android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/setscr_spinner"></Spinner><Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/setscr_edit" android:text="Edit Type"></Button>
+<Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Remove Type" android:id="@+id/setscr_remove"></Button><Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/setscr_add" android:text="Add Type"></Button>
+
+</TableLayout>

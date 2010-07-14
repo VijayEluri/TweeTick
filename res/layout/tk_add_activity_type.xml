@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TableLayout android:layout_width="fill_parent" android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/setaddscr_layout"><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/setaddscr_text" android:text="Add New Activity Type:"></TextView>
+<EditText android:layout_width="wrap_content" android:layout_height="wrap_content" android:maxLines="2" android:id="@+id/setaddscr_edit"></EditText>
+
+<Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Add" android:id="@+id/setaddscr_button"></Button>
+</TableLayout>
