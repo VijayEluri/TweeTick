@@ -10,34 +10,37 @@ import android.view.View;
 
 
 public class TKChart extends View {
-	private ShapeDrawable pieChart;
-	private ShapeDrawable [] pie;
-	private static int centerX;
-	private static int centerY;
-	private static int N_ITEMS;
 	ArrayList<String> times;
 	ArrayList<ShapeDrawable> pieList;
+	static boolean isEmpty; 
 	
 	public TKChart(Context context) {
 		super(context);
-	
-		centerX = 75;//getWidth() / 2;
-		centerY = 75;//getHeight() / 2;
-		
+		isEmpty = false;
 		setupChart(null, 0);
 	}
 	
 	public TKChart(Context context, ArrayList<String[]> times) {
 		super(context);
+		isEmpty = false;
+		
+		if (times == null) {
+			isEmpty = true;
+			return;
+		}
 		
 		try {
+			if (times.size() < 2) {
+				isEmpty = true;
+				return;
+			}
+			
 			String[] lastElement = times.get(times.size() - 1);
 			long totalTime = Long.parseLong(lastElement[0]);
 			times.remove(lastElement);
 		
 			Log.i("totalTIme", times.get(times.size() - 1)[0]);
-		
-			N_ITEMS = times.size();
+			
 			pieList = new ArrayList<ShapeDrawable>();
 			setupChart(times, totalTime);
 		}
@@ -65,6 +68,9 @@ public class TKChart extends View {
 	}
 	
 	protected void onDraw(Canvas canvas) {
+		if (isEmpty)
+			return;
+		
 		for (int i = 0; i < pieList.size(); i++) {
 			Log.i("drawing", "pie: " + i);
 			ShapeDrawable sd = (ShapeDrawable) pieList.get(i);

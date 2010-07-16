@@ -6,14 +6,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
+import android.widget.AdapterView.OnItemSelectedListener;
 
 public class TKSettings extends TKActivity {
 	Intent intent;
 	static Spinner activitySpinner;
+	private static String activityTypeFromSpinner;
+
 	
 	final int ADD  = 1;
 	final int EDIT = 2;
@@ -22,6 +26,7 @@ public class TKSettings extends TKActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tk_settings);  
+        activityTypeFromSpinner = new String();
         
         final Button addButton = (Button) findViewById(R.id.setscr_add);
         final Button editButton = (Button) findViewById(R.id.setscr_edit);
@@ -60,6 +65,23 @@ public class TKSettings extends TKActivity {
         		android.R.layout.simple_spinner_dropdown_item);
         Spinner activityTypeSpinner = (Spinner) 
         		findViewById(R.id.setscr_spinner); 
+        
+        final class MyOnItemSelectedListener implements OnItemSelectedListener {
+
+            public void onItemSelected(AdapterView<?> parent,
+                View view, int pos, long id) {
+//              Toast.makeText(parent.getContext(), "Activity Type is " +
+//                  parent.getItemAtPosition(pos).toString(), Toast.LENGTH_LONG).show();
+              activityTypeFromSpinner = parent.getItemAtPosition(pos).toString();
+            }
+
+            public void onNothingSelected(AdapterView<?> parent) {
+              // Do nothing.
+            }
+        }
+        
+        activityTypeSpinner.setOnItemSelectedListener(
+        		new MyOnItemSelectedListener());
         activityTypeSpinner.setAdapter(adapter);
     }
     
@@ -68,15 +90,18 @@ public class TKSettings extends TKActivity {
     	int n = 0;    	
     	
     	if (action == DEL) {
-    		Spinner activityTypeSpinner = (Spinner) 
-    		findViewById(R.id.setscr_spinner);
+//    		Spinner activityTypeSpinner = (Spinner) 
+//    		findViewById(R.id.setscr_spinner);
     		
     		try {
-    			ArrayAdapter<String> adapter = 
-    				(ArrayAdapter<String>)activityTypeSpinner.getAdapter();
-    			String delString = (String) adapter.getItem(0);
-    			Log.i("delType", delString);
-    			tkdb.deleteActivityType(delString);
+//    			ArrayAdapter<String> adapter = 
+//    				(ArrayAdapter<String>)activityTypeSpinner.getAdapter();
+//    			String delString = (String) adapter.getItem(0);
+//    			Log.i("delType", delString);
+    			tkdb.deleteActivityType(activityTypeFromSpinner);
+    			Toast.makeText(this, "Deleted activity type " +
+    					activityTypeFromSpinner, 
+    					Toast.LENGTH_LONG).show();
     		}
     		catch (Exception e) {
     			Log.e("adapter", e.toString());
