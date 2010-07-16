@@ -227,17 +227,34 @@ public class TKDatabase extends SQLiteOpenHelper {
 				newDate.getTimeInMillis() -
 				oldDate.getTimeInMillis();
 
-			lastActivityString = 
-				dateString + timeString + activityType;
+//			lastActivityString = 
+//				dateString + timeString + activityType;
 
+			lastActivityString = activityType + ": ";
+			
 			cv.put("date", dateString);
 			cv.put("time", timeString);
 			cv.put("duration", deltaTimeInMillis.toString());
 			cv.put("type", activityType);
 
 			db.insertOrThrow(DUR_TABLE, " ", cv);
-			lastActivityString = deltaTimeInMillis.toString() + "ms.";
+//			lastActivityString = deltaTimeInMillis.toString() + "ms.";
+			Long nDays    = deltaTimeInMillis / (1000 * 60 * 60 * 24);
+			deltaTimeInMillis %= (1000 * 60 * 60 * 24);
+			Long nHours   = deltaTimeInMillis / (1000 * 60 * 60);
+			deltaTimeInMillis %= (1000 * 60 * 60);
+			Long nMinutes = deltaTimeInMillis / (1000 * 60);
+			deltaTimeInMillis %= (1000 * 60);
+			Long nSeconds = deltaTimeInMillis / (1000);
 
+			if (nDays > 0)
+				lastActivityString += nDays + " d,";
+			if (nHours > 0)
+				lastActivityString += nHours + " hr,";
+			if (nMinutes > 0)
+				lastActivityString += nMinutes + " min and ";
+			
+			lastActivityString += nSeconds + " secs.";
 		}
 		catch (Exception e) {
 			Log.e("lastActivity", e.toString());
