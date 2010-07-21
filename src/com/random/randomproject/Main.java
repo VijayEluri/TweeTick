@@ -42,7 +42,10 @@ public class Main extends TKActivity {
     	mainAdd.setOnClickListener(new View.OnClickListener() {
     		public void onClick(View v) {
     			Log.i("button", "add");
+    			if (activityInProgress)
+    				handleLastActivity();	
     			startActivityFor(TKAddActivity.class);
+    			activityInProgress = true;
     		}
     	});
 
@@ -63,13 +66,19 @@ public class Main extends TKActivity {
     	mainEndPrev.setOnClickListener(new View.OnClickListener() {
     		public void onClick(View v) {
     			Log.i("button", "Ended Previous Activity");
-//    			startActivityFor(TKReport.class);
-    			String lastActivityString = tkdb.logLastActivity();
-    			Toast.makeText(Main.this, lastActivityString,
-    					Toast.LENGTH_LONG).show();
+    			if (activityInProgress)
+    				Log.i("activity", "In Progress");
+    			else
+    				Log.i("activity", "Not In Progress");
+    			
+    			if(handleLastActivity() < 0) {
+    				Toast.makeText(Main.this,
+    						"No activity in progress at this time",
+    						Toast.LENGTH_LONG).show();
+    			}
     		}
     	});
-    	
+    	    	
     	mainSettings.setOnClickListener(new View.OnClickListener() {
     		public void onClick(View v) {
     			Log.i("button", "settings");
@@ -81,8 +90,13 @@ public class Main extends TKActivity {
     		public void onClick(View v) {
     			Log.i("button", "quit");
     			db.close();
-    			onDestroy();
-    			finish();
+//    			onDestroy();
+//    			finish();
+//    			
+    			handleLastActivity();
+    			
+    			int pid = android.os.Process.myPid();
+    			android.os.Process.killProcess(pid);
     		}
     	});
     }
@@ -90,5 +104,18 @@ public class Main extends TKActivity {
     public void startActivityFor (Class<?> cls) {
     	intent = new Intent(this, cls);
     	startActivityForResult(intent, 0);
+    }
+    
+    private int handleLastActivity() {
+//    	if(activityInProgress == false)
+//    		return -1;
+    	
+    	String lastActivityString = tkdb.logLastActivity();
+		Toast.makeText(Main.this, lastActivityString,
+				Toast.LENGTH_LONG).show();
+		
+		activityInProgress = false;
+		
+		return 0;
     }
 }

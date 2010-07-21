@@ -51,9 +51,6 @@ public class TKAddActivity extends TKActivity {
 
             public void onItemSelected(AdapterView<?> parent,
                 View view, int pos, long id) {
-//              Toast.makeText(parent.getContext(), "Type: " +
-//                  parent.getItemAtPosition(pos).toString(), 
-//                  Toast.LENGTH_LONG).show();
               activityTypeFromSpinner = 
             	  parent.getItemAtPosition(pos).toString();
             }
@@ -68,7 +65,7 @@ public class TKAddActivity extends TKActivity {
         activityTypeSpinner.setAdapter(adapter);
     }
     
-    public void updateActivity(Class<?> cls, int action) {    	
+    public void updateActivity(Class<?> cls, int action) {  
 		EditText activityEditText = (EditText) findViewById(R.id.addscr_edit);
 		String activityString = 
 			activityEditText.getText().toString();
@@ -76,9 +73,11 @@ public class TKAddActivity extends TKActivity {
 		Long ret = tkdb.insertActivity(activityString, activityTypeFromSpinner); 
     	if(ret > -1) {        	
     		Toast.makeText(this,
-					activityString + " of type " + activityTypeFromSpinner + 
-					" added at position " + ret.toString(), 
+					activityString + " of type " + 
+					activityTypeFromSpinner + " added.",  
 					Toast.LENGTH_LONG).show();
+    		
+    		activityInProgress = true;
     		
         	intent = new Intent(this, cls);
         	startActivityForResult(intent, 0);

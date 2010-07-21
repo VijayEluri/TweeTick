@@ -11,8 +11,15 @@ import android.view.View;
 
 public class TKChart extends View {
 	ArrayList<String> times;
+	ArrayList<String[]> legendList;
 	ArrayList<ShapeDrawable> pieList;
+	ArrayList<ShapeDrawable> legendRectList;
 	static boolean isEmpty; 
+	final int startX = 50;
+	final int startY = 10;
+	final int dia    = 200;
+	final int width  = startX + dia;
+	final int height = startY + dia;
 	
 	public TKChart(Context context) {
 		super(context);
@@ -23,6 +30,8 @@ public class TKChart extends View {
 	public TKChart(Context context, ArrayList<String[]> times) {
 		super(context);
 		isEmpty = false;
+		
+		legendList = new ArrayList<String[]>();
 		
 		if (times == null) {
 			isEmpty = true;
@@ -42,6 +51,7 @@ public class TKChart extends View {
 			Log.i("totalTIme", times.get(times.size() - 1)[0]);
 			
 			pieList = new ArrayList<ShapeDrawable>();
+			legendRectList = new ArrayList<ShapeDrawable>();
 			setupChart(times, totalTime);
 		}
 		catch (Exception e) {
@@ -55,13 +65,35 @@ public class TKChart extends View {
 	
 		float startAngle = 0.0f;
 		for (int i = 0; i < times.size(); i++) {
-			float sweepAngle = 
-				Float.parseFloat(times.get(i)[0]) * 360.0f / totalTime; 
+			String [] legend = new String[2];
+			float fraction = Float.parseFloat(times.get(i)[0]) / totalTime;
+			Integer color = 0xff74AC23 * (i + 1);
+
+			final int startLegendX = 10;
+			final int startLegendY = height + ((i + 1) * 20);
+			final int endLegendX   = startLegendX + 50;
+			final int endLegendY   = startLegendY + 10;
+
+//			Building Legend
+			legend[0] = color.toString();
+			legend[1] = times.get(i)[1] + "(" + fraction * 100 + "%)"; 
+			legendList.add(legend);
+			ShapeDrawable  legendRect = new ShapeDrawable();
+			legendRect.getPaint().setColor(color);
+			legendRect.setBounds(startLegendX, startLegendY, 
+					endLegendX, endLegendY);
+			legendRectList.add(legendRect);
+			
+//			Building Piechart
+			float sweepAngle = fraction * 360f; 
 			ShapeDrawable sd = new ShapeDrawable(
 					new ArcShape(startAngle, sweepAngle));
-			sd.getPaint().setColor(0xff74AC23 * (i + 1));
-			sd.setBounds(25, 25, 300, 300);
+			sd.getPaint().setColor(color);
+			sd.setBounds(startX, startY, width, height);
 			pieList.add(sd);
+			
+			String legendValue = times.get(i)[1] + "(" + fraction * 100 + "%)"; 
+			Log.i("Type", legendValue);
 			
 			startAngle += sweepAngle;
 		}
@@ -73,8 +105,10 @@ public class TKChart extends View {
 		
 		for (int i = 0; i < pieList.size(); i++) {
 			Log.i("drawing", "pie: " + i);
-			ShapeDrawable sd = (ShapeDrawable) pieList.get(i);
-			sd.draw(canvas);
+			ShapeDrawable pie = (ShapeDrawable) pieList.get(i);
+			ShapeDrawable legend = (ShapeDrawable) legendRectList.get(i);
+			pie.draw(canvas);
+			legend.draw(canvas);			
 		}
 	}
 }
