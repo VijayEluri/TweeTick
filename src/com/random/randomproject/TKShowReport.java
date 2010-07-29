@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 public class TKShowReport extends TKActivity {
 	Intent intent;
@@ -20,8 +22,17 @@ public class TKShowReport extends TKActivity {
     	ArrayList<String[]> timeTypePairList = 
     		amortizedList(tkdb.getActivitiesForToday());
     	
-        chart = new TKChart(this, timeTypePairList);        
-        setContentView(chart);
+        chart = new TKChart(this, timeTypePairList); 
+        ArrayList<TextView> labelList = chart.getLabels();
+//        setContentView(chart);
+        
+        for (int i = 0; i < labelList.size(); i++) {
+        	TextView label = (TextView) labelList.get(i);
+//        	addContentView(label, layout);
+        	addContentView(label, 
+        			new ViewGroup.LayoutParams(chart.getLabelWidth(), 
+        					chart.getLabelHeight()));
+        }
     }
     
     private ArrayList<String[]> amortizedList(ArrayList<String[]> oList) {

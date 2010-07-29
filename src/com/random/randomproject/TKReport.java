@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 
 public class TKReport extends TKActivity {
 	//Intent intent;
@@ -21,6 +23,24 @@ public class TKReport extends TKActivity {
     			showReport(TKShowReport.class);
     		}
     	});
+        
+        Spinner repScrSpinnerResolution = 
+        	(Spinner) findViewById(R.id.repscr_spinner_resolution);
+        ArrayAdapter<CharSequence> resolutionAdapter = 
+        	ArrayAdapter.createFromResource(this, R.array.range_array, 
+        			android.R.layout.simple_spinner_item);
+        resolutionAdapter.setDropDownViewResource(
+        		android.R.layout.simple_spinner_dropdown_item);
+        repScrSpinnerResolution.setAdapter(resolutionAdapter);
+
+        Spinner repScrSpinnerChartType = 
+        	(Spinner) findViewById(R.id.repscr_spinner_chart_type);
+        ArrayAdapter<CharSequence> chartTypeAdapter = 
+        	ArrayAdapter.createFromResource(this, R.array.chart_type_array, 
+        			android.R.layout.simple_spinner_item);
+        chartTypeAdapter.setDropDownViewResource(
+        		android.R.layout.simple_spinner_dropdown_item);
+        repScrSpinnerChartType.setAdapter(chartTypeAdapter);
     }
     
     public void showReport(Class<?> cls) {

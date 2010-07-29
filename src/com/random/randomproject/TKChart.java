@@ -3,10 +3,12 @@ import java.util.ArrayList;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.ArcShape;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 
 public class TKChart extends View {
@@ -14,12 +16,26 @@ public class TKChart extends View {
 	ArrayList<String[]> legendList;
 	ArrayList<ShapeDrawable> pieList;
 	ArrayList<ShapeDrawable> legendRectList;
+	ArrayList<TextView> labelList;
+	
 	static boolean isEmpty; 
 	final int startX = 50;
 	final int startY = 10;
 	final int dia    = 200;
 	final int width  = startX + dia;
 	final int height = startY + dia;
+	final int legendWidth = 150;
+	final int legendHeight = 15;
+	final int labelWidth   = 250;
+	final int labelHeight  = legendHeight;
+//	int startX;
+//	int startY;
+//	int dia;
+//	int width;
+//	int height;
+	final int margin = 10;
+	
+	Context context;
 	
 	public TKChart(Context context) {
 		super(context);
@@ -29,9 +45,19 @@ public class TKChart extends View {
 	
 	public TKChart(Context context, ArrayList<String[]> times) {
 		super(context);
+		this.context = context;
 		isEmpty = false;
 		
 		legendList = new ArrayList<String[]>();
+		labelList  = new ArrayList<TextView>();
+	
+//		startX = margin;
+//		startY = margin;
+//		width = getMeasuredWidth() - margin;
+//		height = getBottom() - margin;
+		
+		
+		Log.i("h/w", width + "/" + height);
 		
 		if (times == null) {
 			isEmpty = true;
@@ -71,20 +97,38 @@ public class TKChart extends View {
 
 			final int startLegendX = 10;
 			final int startLegendY = height + ((i + 1) * 20);
-			final int endLegendX   = startLegendX + 50;
-			final int endLegendY   = startLegendY + 10;
+			final int endLegendX   = startLegendX + legendWidth;
+			final int endLegendY   = startLegendY + legendHeight;
 
 //			Building Legend
-			legend[0] = color.toString();
-			legend[1] = times.get(i)[1] + "(" + fraction * 100 + "%)"; 
-			legendList.add(legend);
+			TextView label = new TextView(this.context);
+			String labelString = times.get(i)[1] + "(" + fraction * 100 + "%)";
+//			CharSequence labelChars = labelString.subSequence(0,
+//					labelString.length() - 1);
+			Log.i("label", labelString);
+			label.setText(labelString);
+//			label.requestRectangleOnScreen(new Rect(startLegendX + 50, 
+//					startLegendY, endLegendX + 175, endLegendY));
+//			label.setFrame(startLegendX + 50, 
+//					startLegendY, endLegendX + 175, endLegendY);
+			label.setVisibility(VISIBLE);
+			label.setTextColor(color);
+			label.setWidth(250);
+			label.setHeight(endLegendX - startLegendX);
+//			label.setText(labelString.subSequence(0, 
+//					labelString.length() - 1));
+//			label.setBounds(startLegendX + 100, startLegendY,
+//					endLegendX + 400, endLegendY);
+			labelList.add(label);
+//			legendList.add(legend);
 			ShapeDrawable  legendRect = new ShapeDrawable();
 			legendRect.getPaint().setColor(color);
 			legendRect.setBounds(startLegendX, startLegendY, 
 					endLegendX, endLegendY);
 			legendRectList.add(legendRect);
 			
-//			Building Piechart
+			
+//			Building Pie Chart
 			float sweepAngle = fraction * 360f; 
 			ShapeDrawable sd = new ShapeDrawable(
 					new ArcShape(startAngle, sweepAngle));
@@ -92,8 +136,8 @@ public class TKChart extends View {
 			sd.setBounds(startX, startY, width, height);
 			pieList.add(sd);
 			
-			String legendValue = times.get(i)[1] + "(" + fraction * 100 + "%)"; 
-			Log.i("Type", legendValue);
+//			String legendValue = times.get(i)[1] + "(" + fraction * 100 + "%)"; 
+//			Log.i("Type", legendValue);
 			
 			startAngle += sweepAngle;
 		}
@@ -107,8 +151,22 @@ public class TKChart extends View {
 			Log.i("drawing", "pie: " + i);
 			ShapeDrawable pie = (ShapeDrawable) pieList.get(i);
 			ShapeDrawable legend = (ShapeDrawable) legendRectList.get(i);
+			TextView label       = (TextView) labelList.get(i);
 			pie.draw(canvas);
-			legend.draw(canvas);			
+			legend.draw(canvas);	
+			label.draw(canvas);
 		}
+	}
+	
+	public ArrayList<TextView> getLabels() {
+		return labelList;
+	}
+	
+	public int getLabelWidth() {
+		return labelWidth;
+	}
+	
+	public int getLabelHeight() {
+		return labelHeight;
 	}
 }

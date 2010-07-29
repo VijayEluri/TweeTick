@@ -73,7 +73,7 @@ public class TKAddActivity extends TKActivity {
 		Long ret = tkdb.insertActivity(activityString, activityTypeFromSpinner); 
     	if(ret > -1) {        	
     		Toast.makeText(this,
-					activityString + " of type " + 
+//					activityString + " of type " + 
 					activityTypeFromSpinner + " added.",  
 					Toast.LENGTH_LONG).show();
     		

@@ -46,7 +46,7 @@ public class TKDatabase extends SQLiteOpenHelper {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 
 	}
-
+	
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		try {
@@ -127,18 +127,28 @@ public class TKDatabase extends SQLiteOpenHelper {
 		try {
 			cur = (SQLiteCursor) db.rawQuery(qString, null);
 
+			Log.i("Location", "query done!");
+			
 			Integer index = new Integer(cur.getColumnIndex(TK_TYPES));
 
+			Log.i("Location", "got column index!");
+			
 			cur.moveToFirst();
 
+			Log.i("Location", "moved to first");
+			
 			do {
-				value = cur.getString(index);
-				aTypes.add(value);
-				//        		Log.i("ActivityType", value);
-				cur.moveToNext();
+				try  {
+					value = cur.getString(index);
+					aTypes.add(value);
+					Log.i("ActivityType", value);
+					cur.moveToNext();
+				}
+				catch (Exception e) {
+					Log.i("Exception", "sdgsdfg");
+				}
 			} while(cur.isAfterLast() == false);
-
-			cur.close();
+//			cur.close();
 		}
 		catch (SQLException e) {
 			Log.e("Exception on rawQuery()", e.toString());

@@ -4,7 +4,23 @@
     <string name="settings_main">Settings</string>
     <string name="edit_activity">Edit Activity</string>
     <string name="see_report">See Report</string>
-    <string name="hello">Hello RandomProject User!</string>
-    <string name="app_name">Random Project</string>
-<item type="string" format="color|string" name="add_activity">Add Activity</item>
+    <string name="hello">Tweet Your Every Tick!</string>
+    <string name="app_name">TweeTick</string>
+	<item type="string" format="color|string" 
+		name="add_activity">Add Activity</item>
+		
+	<string name="range_prompt">Range</string>
+    <string-array name="range_array">
+        <item>Today</item>
+        <item>This Week</item>
+        <item>This Month</item>
+    </string-array>
+    
+    <string name="chart_type_prompt"></string>
+    <string-array name="chart_type_array">
+        <item>Pie</item>
+        <item>Histogram</item>
+        <item>List Report</item>
+    </string-array>
+    
 </resources>

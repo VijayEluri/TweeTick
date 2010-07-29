@@ -58,7 +58,7 @@ public class TKSettings extends TKActivity {
         if (allTypes.size() < 1) {
         	return;
         }
-
+        
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, 
         		android.R.layout.simple_spinner_item, allTypes);        
         adapter.setDropDownViewResource(
