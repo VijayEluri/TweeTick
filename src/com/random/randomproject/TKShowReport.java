@@ -23,16 +23,16 @@ public class TKShowReport extends TKActivity {
     		amortizedList(tkdb.getActivitiesForToday());
     	
         chart = new TKChart(this, timeTypePairList); 
-        ArrayList<TextView> labelList = chart.getLabels();
-//        setContentView(chart);
+//        ArrayList<TextView> labelList = chart.getLabels();
+        setContentView(chart);
         
-        for (int i = 0; i < labelList.size(); i++) {
-        	TextView label = (TextView) labelList.get(i);
+//        for (int i = 0; i < labelList.size(); i++) {
+//        	TextView label = (TextView) labelList.get(i);
 //        	addContentView(label, layout);
-        	addContentView(label, 
-        			new ViewGroup.LayoutParams(chart.getLabelWidth(), 
-        					chart.getLabelHeight()));
-        }
+//        	addContentView(label, 
+//        			new ViewGroup.LayoutParams(chart.getLabelWidth(), 
+//        					chart.getLabelHeight()));
+//        }
     }
     
     private ArrayList<String[]> amortizedList(ArrayList<String[]> oList) {

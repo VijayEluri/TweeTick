@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Rect;
+import android.graphics.Paint;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.ArcShape;
 import android.util.Log;
@@ -147,14 +147,21 @@ public class TKChart extends View {
 		if (isEmpty)
 			return;
 		
+		final int startLegendX = 10;
+		
 		for (int i = 0; i < pieList.size(); i++) {
 			Log.i("drawing", "pie: " + i);
 			ShapeDrawable pie = (ShapeDrawable) pieList.get(i);
-			ShapeDrawable legend = (ShapeDrawable) legendRectList.get(i);
+//			ShapeDrawable legend = (ShapeDrawable) legendRectList.get(i);
 			TextView label       = (TextView) labelList.get(i);
 			pie.draw(canvas);
-			legend.draw(canvas);	
+//			legend.draw(canvas);	
 			label.draw(canvas);
+			String labelString = (String) label.getText();
+			Paint paint = new Paint();
+			paint.setColor(label.getCurrentTextColor());
+			final int startLegendY = height + ((i + 1) * 15);
+			canvas.drawText(labelString, startLegendX, startLegendY, paint);
 		}
 	}
 	
