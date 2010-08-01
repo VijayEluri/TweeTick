@@ -3,7 +3,7 @@
 <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/main_bg"></ImageView>
 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/text_main" android:text="Select an action:"></TextView><Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Add Activity" android:id="@+id/main_add" android:textColor="#00CC00"></Button>
 <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/main_report" android:text="See Report" android:textColor="#999900"></Button>
-<Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/main_edit" android:text="Edit Activity" android:textColor="#0000FF"></Button>
+<!--<Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/main_edit" android:text="Edit Activity" android:textColor="#0000FF"></Button>-->
 <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="End Previous Activity" android:id="@+id/main_end_prev" android:clickable="true" android:textColor="#FFFF00"></Button><Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/main_settings" android:text="Settings"></Button>
 <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/main_quit" android:textColor="#FF0000" android:text="Quit"></Button>
 

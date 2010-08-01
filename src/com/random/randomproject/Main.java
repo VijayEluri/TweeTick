@@ -34,7 +34,7 @@ public class Main extends TKActivity {
     private void handleButtons() {
     	final Button mainAdd      = (Button) findViewById(R.id.main_add);
     	final Button mainReport   = (Button) findViewById(R.id.main_report);
-    	final Button mainEdit     = (Button) findViewById(R.id.main_edit);
+//    	final Button mainEdit     = (Button) findViewById(R.id.main_edit);
     	final Button mainEndPrev  = (Button) findViewById(R.id.main_end_prev);
     	final Button mainSettings = (Button) findViewById(R.id.main_settings);
     	final Button mainQuit     = (Button) findViewById(R.id.main_quit);
@@ -56,12 +56,12 @@ public class Main extends TKActivity {
     		}
     	});
     	
-    	mainEdit.setOnClickListener(new View.OnClickListener() {
-    		public void onClick(View v) {
-    			Log.i("button", "edit");
-    			startActivityFor(TKEditActivity.class);
-    		}
-    	});
+//    	mainEdit.setOnClickListener(new View.OnClickListener() {
+//    		public void onClick(View v) {
+//    			Log.i("button", "edit");
+//    			startActivityFor(TKEditActivity.class);
+//    		}
+//    	});
     	
     	mainEndPrev.setOnClickListener(new View.OnClickListener() {
     		public void onClick(View v) {

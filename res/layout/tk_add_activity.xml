@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<TableLayout android:id="@+id/TableLayout01" android:layout_width="fill_parent" android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android"><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/addscr_text" android:text="Add Activity:"></TextView>
-<EditText android:layout_width="wrap_content" android:layout_height="wrap_content" android:maxLines="2" android:id="@+id/addscr_edit"></EditText>
-<Spinner android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/addscr_spinner"></Spinner>
+<TableLayout android:id="@+id/TableLayout01" android:layout_width="fill_parent" android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android">
+
+<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/addscr_type_text" android:text="Actvity:"></TextView><Spinner android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/addscr_spinner"></Spinner><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/addscr_text" android:text="Activity Details:"></TextView><EditText android:layout_width="wrap_content" android:layout_height="wrap_content" android:maxLines="2" android:id="@+id/addscr_edit"></EditText>
 <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/addscr_button" android:text="Add"></Button>
+
+
 </TableLayout>
