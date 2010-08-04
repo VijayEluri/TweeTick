@@ -1,4 +1,4 @@
-package com.random.randomproject;
+package com.ghnlabs.tweetick;
 
 import java.util.ArrayList;
 import java.util.Calendar;

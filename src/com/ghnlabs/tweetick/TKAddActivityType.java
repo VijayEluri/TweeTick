@@ -1,6 +1,8 @@
-package com.random.randomproject;
+package com.ghnlabs.tweetick;
 
 import java.util.Date;
+
+import com.ghnlabs.tweetick.R;
 
 import android.content.Intent;
 import android.os.Bundle;

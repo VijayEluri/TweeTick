@@ -1,4 +1,4 @@
-package com.random.randomproject;
+package com.ghnlabs.tweetick;
 
 import android.app.Activity;
 import android.content.Intent;
