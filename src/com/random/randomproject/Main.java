@@ -20,6 +20,7 @@ public class Main extends TKActivity {
         Intent dbIntent = new Intent(this, TKDatabase.class);
         startService(dbIntent);
         
+//        TKCommonFlags.activityInProgress = false;
         handleButtons();
     }
     
@@ -39,13 +40,18 @@ public class Main extends TKActivity {
     	final Button mainSettings = (Button) findViewById(R.id.main_settings);
     	final Button mainQuit     = (Button) findViewById(R.id.main_quit);
     	
+//    	if (TKCommonFlags.activityInProgress) 
+//    		mainEndPrev.setEnable(false);
+//    	else
+//    		mainAdd.enable(false);
+    	
     	mainAdd.setOnClickListener(new View.OnClickListener() {
     		public void onClick(View v) {
     			Log.i("button", "add");
     			if (activityInProgress)
     				handleLastActivity();	
     			startActivityFor(TKAddActivity.class);
-    			activityInProgress = true;
+//    			activityInProgress = true;
     		}
     	});
 
@@ -66,7 +72,7 @@ public class Main extends TKActivity {
     	mainEndPrev.setOnClickListener(new View.OnClickListener() {
     		public void onClick(View v) {
     			Log.i("button", "Ended Previous Activity");
-    			if (activityInProgress)
+    			if (TKCommonFlags.activityInProgress)
     				Log.i("activity", "In Progress");
     			else
     				Log.i("activity", "Not In Progress");
@@ -107,14 +113,14 @@ public class Main extends TKActivity {
     }
     
     private int handleLastActivity() {
-//    	if(activityInProgress == false)
-//    		return -1;
+    	if(TKCommonFlags.activityInProgress == false)
+    		return -1;
     	
     	String lastActivityString = tkdb.logLastActivity();
 		Toast.makeText(Main.this, lastActivityString,
 				Toast.LENGTH_LONG).show();
 		
-		activityInProgress = false;
+		TKCommonFlags.activityInProgress = false;
 		
 		return 0;
     }

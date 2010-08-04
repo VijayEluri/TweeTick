@@ -77,7 +77,7 @@ public class TKAddActivity extends TKActivity {
 					activityTypeFromSpinner + " added.",  
 					Toast.LENGTH_LONG).show();
     		
-    		activityInProgress = true;
+    		TKCommonFlags.activityInProgress = true;
     		
         	intent = new Intent(this, cls);
         	startActivityForResult(intent, 0);
