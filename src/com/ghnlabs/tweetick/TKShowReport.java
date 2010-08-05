@@ -5,17 +5,58 @@ import java.util.ArrayList;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.ViewGroup;
-import android.widget.TextView;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.AdapterView.OnItemSelectedListener;
 
 public class TKShowReport extends TKActivity {
 	Intent intent;
 	TKChart chart;
+	private static String chartTypeFromSpinner;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        setContentView(R.layout.tk_show_report);
-        drawPieChart();
+        generateReports();
+    }
+    
+    private void generateReports() {
+    	chartTypeFromSpinner = new String("Pie");
+    	ArrayList<String> chartTypeList = new ArrayList<String>();
+    	
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, 
+        		android.R.layout.simple_spinner_item, chartTypeList);        
+        adapter.setDropDownViewResource(
+        		android.R.layout.simple_spinner_dropdown_item);
+        Spinner chartTypeSpinner = (Spinner) 
+        		findViewById(R.id.repscr_spinner_chart_type); 
+
+        final class MyOnItemSelectedListener implements OnItemSelectedListener {
+            public void onItemSelected(AdapterView<?> parent,
+                View view, int pos, long id) {
+              chartTypeFromSpinner = 
+            	  parent.getItemAtPosition(pos).toString();
+            }
+
+            public void onNothingSelected(AdapterView<?> parent) {
+              // Do nothing.
+            }
+        }
+
+        Log.i("Chart: ", chartTypeFromSpinner);
+        Log.i("DEBUG", "************************************");
+
+        try {
+        chartTypeSpinner.setOnItemSelectedListener(
+        		new MyOnItemSelectedListener());
+        }
+        catch (Exception e) {
+        	Log.e("generateReports", e.toString());
+        }
+        
+    	drawPieChart();
     }
     
     private void drawPieChart() {    	
