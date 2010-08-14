@@ -91,7 +91,7 @@ public class TKChart extends View {
 	
 		float startAngle = 0.0f;
 		for (int i = 0; i < times.size(); i++) {
-			String [] legend = new String[2];
+//			String [] legend = new String[2];
 			float fraction = Float.parseFloat(times.get(i)[0]) / totalTime;
 			Integer color = 0xff74AC23 * (i + 1);
 
@@ -102,7 +102,7 @@ public class TKChart extends View {
 
 //			Building Legend
 			TextView label = new TextView(this.context);
-//			String labelString = times.get(i)[1] + "(" + fraction * 100 + "%)";
+			String labelString	 = times.get(i)[1] + "(" + fraction * 100 + "%)";
 //			CharSequence labelChars = labelString.subSequence(0,
 //					labelString.length() - 1);
 //			Log.i("label", labelString);
@@ -115,8 +115,8 @@ public class TKChart extends View {
 			label.setTextColor(color);
 			label.setWidth(250);
 			label.setHeight(endLegendX - startLegendX);
-//			label.setText(labelString.subSequence(0, 
-//					labelString.length() - 1));
+			label.setText(labelString.subSequence(0, 
+					labelString.length() - 1));
 //			label.setBounds(startLegendX + 100, startLegendY,
 //					endLegendX + 400, endLegendY);
 			labelList.add(label);
@@ -156,11 +156,12 @@ public class TKChart extends View {
 			TextView label       = (TextView) labelList.get(i);
 			pie.draw(canvas);
 //			legend.draw(canvas);	
-			label.draw(canvas);
+//			label.draw(canvas);
 			String labelString = (String) label.getText();
 			Paint paint = new Paint();
 			paint.setColor(label.getCurrentTextColor());
 			final int startLegendY = height + ((i + 1) * 15);
+			
 			canvas.drawText(labelString, startLegendX, startLegendY, paint);
 		}
 	}

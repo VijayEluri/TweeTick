@@ -36,21 +36,21 @@ public class TKSettings extends TKActivity {
         
         addButton.setOnClickListener(new View.OnClickListener() {
     		public void onClick(View v) {
-    			Log.i("button", "add");
+//    			Log.i("button", "add");
     			updateActivity(TKAddActivityType.class, ADD);
     		}
     	});
         
         editButton.setOnClickListener(new View.OnClickListener() {
     		public void onClick(View v) {
-    			Log.i("button", "edit");
+//    			Log.i("button", "edit");
     			updateActivity(TKUpdateActivityType.class, EDIT);
     		}
     	});
         
         delButton.setOnClickListener(new View.OnClickListener() {
     		public void onClick(View v) {
-    			Log.i("button", "delete");
+//    			Log.i("button", "delete");
     			updateActivity(TKUpdateActivityType.class, DEL);
     		}
     	});

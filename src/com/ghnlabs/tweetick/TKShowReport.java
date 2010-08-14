@@ -89,9 +89,9 @@ public class TKShowReport extends TKActivity {
     				Long.parseLong(pair[0]) +
     				Long.parseLong(aList.get(index)[0]);
     			
-    			Log.i("adding", 
-    					pair[1] + ": " + pair[0] + 
-    					" to " + oList.get(index)[0]);
+//    			Log.i("adding", 
+//    					pair[1] + ": " + pair[0] + 
+//    					" to " + oList.get(index)[0]);
     			String [] newPair =	new String[2]; 
     			newPair[0] = updatedTime.toString();
         		newPair[1] = pair[1];
