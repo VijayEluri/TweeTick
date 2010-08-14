@@ -46,9 +46,10 @@ public class TKAddActivityType extends TKActivity {
 			intent = new Intent(this, Main.class);    	
 			startActivityForResult(intent, 0);
 			Toast.makeText(TKAddActivityType.this,
-					aType + " added at position " + ret.toString() + 
-					" at " + d.toString(), 
-					Toast.LENGTH_LONG).show();
+					aType + " added",
+//					aType + " added at position " + ret.toString() + 
+//					" at " + d.toString(), 
+					Toast.LENGTH_SHORT).show();
 		}
     }
 }

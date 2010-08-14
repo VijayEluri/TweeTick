@@ -74,7 +74,7 @@ public class TKChart extends View {
 			long totalTime = Long.parseLong(lastElement[0]);
 			times.remove(lastElement);
 		
-			Log.i("totalTIme", times.get(times.size() - 1)[0]);
+//			Log.i("totalTime", times.get(times.size() - 1)[0]);
 			
 			pieList = new ArrayList<ShapeDrawable>();
 			legendRectList = new ArrayList<ShapeDrawable>();
@@ -102,11 +102,11 @@ public class TKChart extends View {
 
 //			Building Legend
 			TextView label = new TextView(this.context);
-			String labelString = times.get(i)[1] + "(" + fraction * 100 + "%)";
+//			String labelString = times.get(i)[1] + "(" + fraction * 100 + "%)";
 //			CharSequence labelChars = labelString.subSequence(0,
 //					labelString.length() - 1);
-			Log.i("label", labelString);
-			label.setText(labelString);
+//			Log.i("label", labelString);
+//			label.setText(labelString);
 //			label.requestRectangleOnScreen(new Rect(startLegendX + 50, 
 //					startLegendY, endLegendX + 175, endLegendY));
 //			label.setFrame(startLegendX + 50, 
@@ -150,7 +150,7 @@ public class TKChart extends View {
 		final int startLegendX = 10;
 		
 		for (int i = 0; i < pieList.size(); i++) {
-			Log.i("drawing", "pie: " + i);
+//			Log.i("drawing", "pie: " + i);
 			ShapeDrawable pie = (ShapeDrawable) pieList.get(i);
 //			ShapeDrawable legend = (ShapeDrawable) legendRectList.get(i);
 			TextView label       = (TextView) labelList.get(i);

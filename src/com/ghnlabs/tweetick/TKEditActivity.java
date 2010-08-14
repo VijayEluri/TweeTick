@@ -21,7 +21,7 @@ public class TKEditActivity extends TKActivity {
                
         editButton.setOnClickListener(new View.OnClickListener() {
     		public void onClick(View v) {
-    			Log.i("button", "update");
+//    			Log.i("button", "update");
     			updateActivity(TKUpdateActivity.class, UPDATE);
     		}
     	});

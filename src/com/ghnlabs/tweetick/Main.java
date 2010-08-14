@@ -74,10 +74,10 @@ public class Main extends TKActivity {
     	mainEndPrev.setOnClickListener(new View.OnClickListener() {
     		public void onClick(View v) {
     			Log.i("button", "Ended Previous Activity");
-    			if (TKCommonFlags.activityInProgress)
-    				Log.i("activity", "In Progress");
-    			else
-    				Log.i("activity", "Not In Progress");
+//    			if (TKCommonFlags.activityInProgress)
+//    				Log.i("activity", "In Progress");
+//    			else
+//    				Log.i("activity", "Not In Progress");
     			
     			if(handleLastActivity() < 0) {
     				Toast.makeText(Main.this,
@@ -96,7 +96,7 @@ public class Main extends TKActivity {
 
     	mainQuit.setOnClickListener(new View.OnClickListener() {
     		public void onClick(View v) {
-    			Log.i("button", "quit");
+//    			Log.i("button", "quit");
     			db.close();
 //    			onDestroy();
 //    			finish();

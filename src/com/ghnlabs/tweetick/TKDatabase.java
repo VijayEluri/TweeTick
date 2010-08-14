@@ -85,7 +85,7 @@ public class TKDatabase extends SQLiteOpenHelper {
 		nowCalendar.get(Calendar.MONTH) + "-" +
 		nowCalendar.get(Calendar.DAY_OF_MONTH);
 
-		Log.i("statement", DICTIONARY_TABLE_CREATE);
+//		Log.i("statement", DICTIONARY_TABLE_CREATE);
 
 		String timeString = nowCalendar.get(Calendar.HOUR_OF_DAY) + ":" +
 		nowCalendar.get(Calendar.MINUTE) + ":" +
@@ -127,25 +127,25 @@ public class TKDatabase extends SQLiteOpenHelper {
 		try {
 			cur = (SQLiteCursor) db.rawQuery(qString, null);
 
-			Log.i("Location", "query done!");
+//			Log.i("Location", "query done!");
 			
 			Integer index = new Integer(cur.getColumnIndex(TK_TYPES));
 
-			Log.i("Location", "got column index!");
+//			Log.i("Location", "got column index!");
 			
 			cur.moveToFirst();
 
-			Log.i("Location", "moved to first");
+//			Log.i("Location", "moved to first");
 			
 			do {
 				try  {
 					value = cur.getString(index);
 					aTypes.add(value);
-					Log.i("ActivityType", value);
+//					Log.i("ActivityType", value);
 					cur.moveToNext();
 				}
 				catch (Exception e) {
-					Log.i("Exception", "sdgsdfg");
+					Log.e("cursoe", e.toString());
 				}
 			} while(cur.isAfterLast() == false);
 //			cur.close();
@@ -249,13 +249,16 @@ public class TKDatabase extends SQLiteOpenHelper {
 
 			db.insertOrThrow(DUR_TABLE, " ", cv);
 //			lastActivityString = deltaTimeInMillis.toString() + "ms.";
-			Long nDays    = deltaTimeInMillis / (1000 * 60 * 60 * 24);
-			deltaTimeInMillis %= (1000 * 60 * 60 * 24);
-			Long nHours   = deltaTimeInMillis / (1000 * 60 * 60);
-			deltaTimeInMillis %= (1000 * 60 * 60);
-			Long nMinutes = deltaTimeInMillis / (1000 * 60);
-			deltaTimeInMillis %= (1000 * 60);
+//			Long nDays    = deltaTimeInMillis / (1000 * 60 * 60 * 24);
+//			deltaTimeInMillis %= (1000 * 60 * 60 * 24);
+//			Long nHours   = deltaTimeInMillis / (1000 * 60 * 60);
+//			deltaTimeInMillis %= (1000 * 60 * 60);
+//			Long nMinutes = deltaTimeInMillis / (1000 * 60);
+//			deltaTimeInMillis %= (1000 * 60);
 			Long nSeconds = deltaTimeInMillis / (1000);
+			Long nMinutes = nSeconds / 60;
+			Long nHours   = nMinutes / 60;
+			Long nDays    = nHours / 24;
 
 			if (nDays > 0)
 				lastActivityString += nDays + " d,";

@@ -31,7 +31,7 @@ public class TKAddActivity extends TKActivity {
         final Button addButton = (Button) findViewById(R.id.addscr_button);
         addButton.setOnClickListener(new View.OnClickListener() {
     		public void onClick(View v) {
-    			Log.i("button", "add");
+//    			Log.i("button", "add");
     			updateActivity(Main.class, ADD);
     		}
     	});
@@ -84,8 +84,8 @@ public class TKAddActivity extends TKActivity {
         	intent = new Intent(this, cls);
         	startActivityForResult(intent, 0);
     	}
-    	else {
-    		Log.i("insert", "failed!");
-    	}
+//    	else {
+//    		Log.i("insert", "failed!");
+//    	}
     }
 }
