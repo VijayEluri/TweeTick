@@ -1,8 +1,8 @@
-package com.ghnlabs.tweetick;
+package com.riglabs.tweetick;
 
 import java.util.Date;
 
-import com.ghnlabs.tweetick.R;
+import com.riglabs.tweetick.R;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -36,8 +36,8 @@ public class TKAddActivityType extends TKActivity {
     }
     
     private void addActivityType(String aType) {
-		Log.i("button", "setaddscr_button");
-		Log.i("button", aType);
+//		Log.i("button", "setaddscr_button");
+//		Log.i("button", aType);
 		
 		Date d = new Date();
 		

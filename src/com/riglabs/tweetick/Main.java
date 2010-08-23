@@ -1,6 +1,6 @@
-package com.ghnlabs.tweetick;
+package com.riglabs.tweetick;
 
-import com.ghnlabs.tweetick.R;
+import com.riglabs.tweetick.R;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -49,7 +49,7 @@ public class Main extends TKActivity {
     	
     	mainAdd.setOnClickListener(new View.OnClickListener() {
     		public void onClick(View v) {
-    			Log.i("button", "add");
+//    			Log.i("button", "add");
     			if (activityInProgress)
     				handleLastActivity();	
     			startActivityFor(TKAddActivity.class);
@@ -59,7 +59,7 @@ public class Main extends TKActivity {
 
     	mainReport.setOnClickListener(new View.OnClickListener() {
     		public void onClick(View v) {
-    			Log.i("button", "report");
+//    			Log.i("button", "report");
     			startActivityFor(TKReport.class);
     		}
     	});
@@ -73,7 +73,7 @@ public class Main extends TKActivity {
     	
     	mainEndPrev.setOnClickListener(new View.OnClickListener() {
     		public void onClick(View v) {
-    			Log.i("button", "Ended Previous Activity");
+//    			Log.i("button", "Ended Previous Activity");
 //    			if (TKCommonFlags.activityInProgress)
 //    				Log.i("activity", "In Progress");
 //    			else
@@ -89,7 +89,7 @@ public class Main extends TKActivity {
     	    	
     	mainSettings.setOnClickListener(new View.OnClickListener() {
     		public void onClick(View v) {
-    			Log.i("button", "settings");
+//    			Log.i("button", "settings");
     			startActivityFor(TKSettings.class);
     		}
     	});

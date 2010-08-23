@@ -1,6 +1,8 @@
-package com.ghnlabs.tweetick;
+package com.riglabs.tweetick;
 
 import java.util.ArrayList;
+
+import com.riglabs.tweetick.R;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -45,8 +47,8 @@ public class TKShowReport extends TKActivity {
             }
         }
 
-        Log.i("Chart: ", chartTypeFromSpinner);
-        Log.i("DEBUG", "************************************");
+//        Log.i("Chart: ", chartTypeFromSpinner);
+//        Log.i("DEBUG", "************************************");
 
         try {
         chartTypeSpinner.setOnItemSelectedListener(
@@ -77,7 +79,7 @@ public class TKShowReport extends TKActivity {
     }
     
     private ArrayList<String[]> amortizedList(ArrayList<String[]> oList) {
-    	Log.i("listSize", "n: " + oList.size());
+//    	Log.i("listSize", "n: " + oList.size());
     	ArrayList<String[]> aList = new ArrayList<String[]>();
     	
     	for (int i = 0; i < oList.size(); i++) {

@@ -1,6 +1,6 @@
-package com.ghnlabs.tweetick;
+package com.riglabs.tweetick;
 
-import com.ghnlabs.tweetick.R;
+import com.riglabs.tweetick.R;
 
 import android.os.Bundle;
 

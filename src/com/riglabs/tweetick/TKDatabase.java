@@ -1,4 +1,4 @@
-package com.ghnlabs.tweetick;
+package com.riglabs.tweetick;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -90,11 +90,11 @@ public class TKDatabase extends SQLiteOpenHelper {
 		String timeString = nowCalendar.get(Calendar.HOUR_OF_DAY) + ":" +
 		nowCalendar.get(Calendar.MINUTE) + ":" +
 		nowCalendar.get(Calendar.SECOND);
-		Log.i("insert", 
-				dateString + " " +
-				timeString + " " +
-				activityName + " " +
-				activityType);
+//		Log.i("insert", 
+//				dateString + " " +
+//				timeString + " " +
+//				activityName + " " +
+//				activityType);
 
 		cv.put("date", dateString);
 		cv.put("time", timeString);
@@ -166,7 +166,7 @@ public class TKDatabase extends SQLiteOpenHelper {
 			ArrayList<String> l = getActivityTypes();
 
 			if(l.size() < 2) {
-				Log.w("delete", "Cannot delete last element");
+//				Log.w("delete", "Cannot delete last element");
 				return 0;
 			}
 
@@ -221,9 +221,9 @@ public class TKDatabase extends SQLiteOpenHelper {
 		String [] dateBits = dateString.split("-");
 		String [] timeBits = timeString.split(":");
 
-		Log.i("dateTime", 
-				dateBits[0] + dateBits[1] + dateBits[2] +
-				timeBits[0] + timeBits[1]);
+//		Log.i("dateTime", 
+//				dateBits[0] + dateBits[1] + dateBits[2] +
+//				timeBits[0] + timeBits[1]);
 		try {
 			GregorianCalendar oldDate = new GregorianCalendar (
 					Integer.parseInt(dateBits[0]),
@@ -248,17 +248,17 @@ public class TKDatabase extends SQLiteOpenHelper {
 			cv.put("type", activityType);
 
 			db.insertOrThrow(DUR_TABLE, " ", cv);
-//			lastActivityString = deltaTimeInMillis.toString() + "ms.";
-//			Long nDays    = deltaTimeInMillis / (1000 * 60 * 60 * 24);
-//			deltaTimeInMillis %= (1000 * 60 * 60 * 24);
-//			Long nHours   = deltaTimeInMillis / (1000 * 60 * 60);
-//			deltaTimeInMillis %= (1000 * 60 * 60);
-//			Long nMinutes = deltaTimeInMillis / (1000 * 60);
-//			deltaTimeInMillis %= (1000 * 60);
+			lastActivityString = deltaTimeInMillis.toString() + "ms.";
+			Long nDays    = deltaTimeInMillis / (1000 * 60 * 60 * 24);
+			deltaTimeInMillis %= (1000 * 60 * 60 * 24);
+			Long nHours   = deltaTimeInMillis / (1000 * 60 * 60);
+			deltaTimeInMillis %= (1000 * 60 * 60);
+			Long nMinutes = deltaTimeInMillis / (1000 * 60);
+			deltaTimeInMillis %= (1000 * 60);
 			Long nSeconds = deltaTimeInMillis / (1000);
-			Long nMinutes = nSeconds / 60;
-			Long nHours   = nMinutes / 60;
-			Long nDays    = nHours / 24;
+//			Long nMinutes = nSeconds / 60;
+//			Long nHours   = nMinutes / 60;
+//			Long nDays    = nHours / 24;
 
 			if (nDays > 0)
 				lastActivityString += nDays + " d,";
@@ -292,7 +292,7 @@ public class TKDatabase extends SQLiteOpenHelper {
 			"SELECT duration,type FROM " +
 			DUR_TABLE + " WHERE date='" + todayString + "'";
 
-		Log.i("Query", qString);
+//		Log.i("Query", qString);
 
 		try {
 			SQLiteCursor cursor = (SQLiteCursor) db.rawQuery(qString, null);
@@ -300,7 +300,7 @@ public class TKDatabase extends SQLiteOpenHelper {
 			if(cursor.getCount() <= 0) 
 				return timeTypePairList;
 
-			Log.i("nRows", "n: " + cursor.getCount());
+//			Log.i("nRows", "n: " + cursor.getCount());
 
 			int durationIndex = cursor.getColumnIndex("duration");
 			int typeIndex     = cursor.getColumnIndex("type");
@@ -314,7 +314,7 @@ public class TKDatabase extends SQLiteOpenHelper {
 				timeTypePair[1] = cursor.getString(typeIndex);
 				timeTypePairList.add(timeTypePair);
 				totalMilliSecs += Long.parseLong(timeTypePair[0]);
-				Log.i(timeTypePair[1], timeTypePair[0]);
+//				Log.i(timeTypePair[1], timeTypePair[0]);
 				cursor.moveToNext();
 			} while(cursor.isAfterLast() == false);
 

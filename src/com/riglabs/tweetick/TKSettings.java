@@ -1,8 +1,8 @@
-package com.ghnlabs.tweetick;
+package com.riglabs.tweetick;
 
 import java.util.ArrayList;
 
-import com.ghnlabs.tweetick.R;
+import com.riglabs.tweetick.R;
 
 import android.content.Intent;
 import android.os.Bundle;

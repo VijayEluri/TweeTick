@@ -1,4 +1,4 @@
-package com.ghnlabs.tweetick;
+package com.riglabs.tweetick;
 
 import android.app.Activity;
 import android.content.Intent;

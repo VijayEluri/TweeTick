@@ -1,4 +1,4 @@
-package com.ghnlabs.tweetick;
+package com.riglabs.tweetick;
 import java.util.ArrayList;
 
 import android.content.Context;
@@ -57,7 +57,7 @@ public class TKChart extends View {
 //		height = getBottom() - margin;
 		
 		
-		Log.i("h/w", width + "/" + height);
+//		Log.i("h/w", width + "/" + height);
 		
 		if (times == null) {
 			isEmpty = true;

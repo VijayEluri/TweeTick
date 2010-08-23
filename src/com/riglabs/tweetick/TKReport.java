@@ -1,6 +1,6 @@
-package com.ghnlabs.tweetick;
+package com.riglabs.tweetick;
 
-import com.ghnlabs.tweetick.R;
+import com.riglabs.tweetick.R;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,7 +21,7 @@ public class TKReport extends TKActivity {
         
         repButton.setOnClickListener(new View.OnClickListener() {
     		public void onClick(View v) {
-    			Log.i("button", "add");
+//    			Log.i("button", "add");
     			showReport(TKShowReport.class);
     		}
     	});
