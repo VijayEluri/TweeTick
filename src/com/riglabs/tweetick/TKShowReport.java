@@ -2,8 +2,6 @@ package com.riglabs.tweetick;
 
 import java.util.ArrayList;
 
-import com.riglabs.tweetick.R;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +14,8 @@ import android.widget.AdapterView.OnItemSelectedListener;
 public class TKShowReport extends TKActivity {
 	Intent intent;
 	TKChart chart;
+	TKHistogram histogram;
+	
 	private static String chartTypeFromSpinner;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -27,9 +27,11 @@ public class TKShowReport extends TKActivity {
     private void generateReports() {
     	chartTypeFromSpinner = new String("Pie");
     	ArrayList<String> chartTypeList = new ArrayList<String>();
-    	
+
+//    	chartTypeList = R.array.chart_type_array;
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, 
-        		android.R.layout.simple_spinner_item, chartTypeList);        
+        		android.R.layout.simple_spinner_item, 
+        		R.array.chart_type_array);        
         adapter.setDropDownViewResource(
         		android.R.layout.simple_spinner_dropdown_item);
         Spinner chartTypeSpinner = (Spinner) 
@@ -47,7 +49,10 @@ public class TKShowReport extends TKActivity {
             }
         }
 
-//        Log.i("Chart: ", chartTypeFromSpinner);
+        if (chartTypeFromSpinner == null)
+        	return;
+        
+        Log.i("Chart: ", chartTypeFromSpinner);
 //        Log.i("DEBUG", "************************************");
 
         try {
@@ -58,7 +63,10 @@ public class TKShowReport extends TKActivity {
         	Log.e("generateReports", e.toString());
         }
         
-    	drawPieChart();
+        if (chartTypeFromSpinner.compareTo("Pie") == 0) 
+        	drawHistogram(); //drawPieChart();
+        else if (chartTypeFromSpinner.compareTo("Histogram") == 0)
+        	drawHistogram();
     }
     
     private void drawPieChart() {    	
@@ -76,6 +84,14 @@ public class TKShowReport extends TKActivity {
 //        			new ViewGroup.LayoutParams(chart.getLabelWidth(), 
 //        					chart.getLabelHeight()));
 //        }
+    }
+    
+    private void drawHistogram() {    	
+    	ArrayList<String[]> timeTypePairList = 
+    		amortizedList(tkdb.getActivitiesForToday());
+    	
+        histogram = new TKHistogram(this, timeTypePairList); 
+        setContentView(histogram);
     }
     
     private ArrayList<String[]> amortizedList(ArrayList<String[]> oList) {

@@ -5,16 +5,17 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.ArcShape;
+import android.graphics.drawable.shapes.RectShape;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 
-public class TKChart extends View {
+public class TKHistogram extends View {
 	ArrayList<String> times;
 	ArrayList<String[]> legendList;
-	ArrayList<ShapeDrawable> pieList;
+//	ArrayList<ShapeDrawable> pieList;
+	ArrayList<ShapeDrawable> coloredBoxList;
 	ArrayList<ShapeDrawable> legendRectList;
 	ArrayList<TextView> labelList;
 	
@@ -37,13 +38,13 @@ public class TKChart extends View {
 	
 	Context context;
 	
-	public TKChart(Context context) {
+	public TKHistogram(Context context) {
 		super(context);
 		isEmpty = false;
 		setupChart(null, 0);
 	}
 	
-	public TKChart(Context context, ArrayList<String[]> times) {
+	public TKHistogram(Context context, ArrayList<String[]> times) {
 		super(context);
 		this.context = context;
 		isEmpty = false;
@@ -76,7 +77,7 @@ public class TKChart extends View {
 		
 //			Log.i("totalTime", times.get(times.size() - 1)[0]);
 			
-			pieList = new ArrayList<ShapeDrawable>();
+			coloredBoxList = new ArrayList<ShapeDrawable>();
 			legendRectList = new ArrayList<ShapeDrawable>();
 			setupChart(times, totalTime);
 		}
@@ -89,7 +90,13 @@ public class TKChart extends View {
 		if (times == null || totalTime == 0)
 			return;
 	
-		float startAngle = 0.0f;
+//		float startAngle = 0.0f;
+		final int boxWidth = 25;
+		int startBoxX = startX + boxWidth;
+		int endBoxX = startBoxX + boxWidth;
+		final int endBoxY = height;
+		int startBoxY = startY;
+
 		for (int i = 0; i < times.size(); i++) {
 //			String [] legend = new String[2];
 			float fraction = Float.parseFloat(times.get(i)[0]) / totalTime;
@@ -103,7 +110,7 @@ public class TKChart extends View {
 //			Building Legend
 			TextView label = new TextView(this.context);
 //			String fractionString = "0.2f", fraction * 100; 
-			String labelString	 = times.get(i)[1] + "(" + fraction * 100 + "%)";
+			String labelString	 = times.get(i)[1] + ": " + fraction * 100;
 //			CharSequence labelChars = labelString.subSequence(0,
 //					labelString.length() - 1);
 //			Log.i("label", labelString);
@@ -130,38 +137,77 @@ public class TKChart extends View {
 			
 			
 //			Building Pie Chart
-			float sweepAngle = fraction * 360f; 
-			ShapeDrawable sd = new ShapeDrawable(
-					new ArcShape(startAngle, sweepAngle));
+//			float sweepAngle = fraction * 360f; 
+//			ShapeDrawable sd = new ShapeDrawable(
+//					new ArcShape(startAngle, sweepAngle));
+//			sd.getPaint().setColor(color);
+//			sd.setBounds(startX, startY, width, height);
+//			pieList.add(sd);
+//			
+////			String legendValue = times.get(i)[1] + "(" + fraction * 100 + "%)"; 
+////			Log.i("Type", legendValue);
+//			
+//			startAngle += sweepAngle;
+			
+			ShapeDrawable sd = new ShapeDrawable(new RectShape());
 			sd.getPaint().setColor(color);
-			sd.setBounds(startX, startY, width, height);
-			pieList.add(sd);
+			Float boxLength = dia * fraction;
+			Log.i("boxLength", boxLength + "");
+			startBoxY = height - boxLength.intValue();
+			Log.i("endBoxX", endBoxX + "");
+			Log.i("boxWidth", boxWidth + "");
+			sd.setBounds(startBoxX, startBoxY, endBoxX, height);
+			startBoxX += boxWidth;
+			endBoxX += boxWidth;
 			
-//			String legendValue = times.get(i)[1] + "(" + fraction * 100 + "%)"; 
-//			Log.i("Type", legendValue);
-			
-			startAngle += sweepAngle;
+			coloredBoxList.add(sd);
 		}
+	}
+	
+	private void drawAxes(Canvas canvas) {
+		Paint axesColor = new Paint();
+		axesColor.setColor(0xffffffff);
+		float[] axesPt = new float[48];
+		axesPt[0] = startX;
+		axesPt[1] = height;
+		axesPt[2] = startX;
+		axesPt[3] = startY;
+		axesPt[4] = startX;
+		axesPt[5] = height;
+		axesPt[6] = startX + width;
+		axesPt[7] = height;
+		
+		int j = 0;
+		for(int i = 8; i < 48; i += 4) {
+			final int ticY = height - (++j * (height / 10));
+			axesPt[i] = startX - 2;
+			axesPt[i + 1] = axesPt[i + 3] = ticY;
+			axesPt[i + 2] = startX + 2;
+		}
+		
+		canvas.drawLines(axesPt, axesColor);
 	}
 	
 	protected void onDraw(Canvas canvas) {
 		if (isEmpty)
 			return;
 		
+		drawAxes(canvas);
+		
 		final int startLegendX = 10;
 		
-		for (int i = 0; i < pieList.size(); i++) {
+		for (int i = 0; i < coloredBoxList.size(); i++) {
 //			Log.i("drawing", "pie: " + i);
-			ShapeDrawable pie = (ShapeDrawable) pieList.get(i);
+			ShapeDrawable box = (ShapeDrawable) coloredBoxList.get(i);
 //			ShapeDrawable legend = (ShapeDrawable) legendRectList.get(i);
 			TextView label       = (TextView) labelList.get(i);
-			pie.draw(canvas);
+			box.draw(canvas);
 //			legend.draw(canvas);	
 //			label.draw(canvas);
 			String labelString = (String) label.getText();
 			Paint paint = new Paint();
 			paint.setColor(label.getCurrentTextColor());
-			final int startLegendY = height + ((i + 1) * 15);
+			final int startLegendY = height + ((i + 1) * 15) + 25;
 			
 			canvas.drawText(labelString, startLegendX, startLegendY, paint);
 		}
