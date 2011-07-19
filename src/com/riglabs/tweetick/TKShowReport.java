@@ -26,7 +26,7 @@ public class TKShowReport extends TKActivity {
     
     private void generateReports() {
     	chartTypeFromSpinner = new String("Pie");
-    	ArrayList<String> chartTypeList = new ArrayList<String>();
+//    	ArrayList<String> chartTypeList = new ArrayList<String>();
 
 //    	chartTypeList = R.array.chart_type_array;
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, 
@@ -69,22 +69,22 @@ public class TKShowReport extends TKActivity {
         	drawHistogram();
     }
     
-    private void drawPieChart() {    	
-    	ArrayList<String[]> timeTypePairList = 
-    		amortizedList(tkdb.getActivitiesForToday());
-    	
-        chart = new TKChart(this, timeTypePairList); 
-//        ArrayList<TextView> labelList = chart.getLabels();
-        setContentView(chart);
-        
-//        for (int i = 0; i < labelList.size(); i++) {
-//        	TextView label = (TextView) labelList.get(i);
-//        	addContentView(label, layout);
-//        	addContentView(label, 
-//        			new ViewGroup.LayoutParams(chart.getLabelWidth(), 
-//        					chart.getLabelHeight()));
-//        }
-    }
+//    private void drawPieChart() {    	
+//    	ArrayList<String[]> timeTypePairList = 
+//    		amortizedList(tkdb.getActivitiesForToday());
+//    	
+//        chart = new TKChart(this, timeTypePairList); 
+////        ArrayList<TextView> labelList = chart.getLabels();
+//        setContentView(chart);
+//        
+////        for (int i = 0; i < labelList.size(); i++) {
+////        	TextView label = (TextView) labelList.get(i);
+////        	addContentView(label, layout);
+////        	addContentView(label, 
+////        			new ViewGroup.LayoutParams(chart.getLabelWidth(), 
+////        					chart.getLabelHeight()));
+////        }
+//    }
     
     private void drawHistogram() {    	
     	ArrayList<String[]> timeTypePairList = 

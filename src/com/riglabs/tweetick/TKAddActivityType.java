@@ -1,6 +1,6 @@
 package com.riglabs.tweetick;
 
-import java.util.Date;
+//import java.util.Date;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -36,7 +36,7 @@ public class TKAddActivityType extends TKActivity {
 //		Log.i("button", "setaddscr_button");
 //		Log.i("button", aType);
 		
-		Date d = new Date();
+		//Date d = new Date();
 		
 		Long ret = tkdb.insertType(aType);
 		if(ret > -1) {

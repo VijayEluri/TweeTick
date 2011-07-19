@@ -14,7 +14,6 @@ import android.widget.TextView;
 public class TKHistogram extends View {
 	ArrayList<String> times;
 	ArrayList<String[]> legendList;
-//	ArrayList<ShapeDrawable> pieList;
 	ArrayList<ShapeDrawable> coloredBoxList;
 	ArrayList<ShapeDrawable> legendRectList;
 	ArrayList<TextView> labelList;
@@ -29,11 +28,6 @@ public class TKHistogram extends View {
 	final int legendHeight = 15;
 	final int labelWidth   = 250;
 	final int labelHeight  = legendHeight;
-//	int startX;
-//	int startY;
-//	int dia;
-//	int width;
-//	int height;
 	final int margin = 10;
 	
 	Context context;
@@ -51,15 +45,7 @@ public class TKHistogram extends View {
 		
 		legendList = new ArrayList<String[]>();
 		labelList  = new ArrayList<TextView>();
-	
-//		startX = margin;
-//		startY = margin;
-//		width = getMeasuredWidth() - margin;
-//		height = getBottom() - margin;
-		
-		
-//		Log.i("h/w", width + "/" + height);
-		
+			
 		if (times == null) {
 			isEmpty = true;
 			return;
@@ -90,65 +76,38 @@ public class TKHistogram extends View {
 		if (times == null || totalTime == 0)
 			return;
 	
-//		float startAngle = 0.0f;
 		final int boxWidth = 25;
 		int startBoxX = startX + boxWidth;
 		int endBoxX = startBoxX + boxWidth;
-		final int endBoxY = height;
 		int startBoxY = startY;
 
 		for (int i = 0; i < times.size(); i++) {
-//			String [] legend = new String[2];
 			float fraction = Float.parseFloat(times.get(i)[0]) / totalTime;
 			Integer color = 0xff74AC23 * (i + 1);
 
 			final int startLegendX = 10;
-			final int startLegendY = height + ((i + 1) * 20);
+			//final int startLegendY = height + ((i + 1) * 20);
 			final int endLegendX   = startLegendX + legendWidth;
-			final int endLegendY   = startLegendY + legendHeight;
+			//final int endLegendY   = startLegendY + legendHeight;
 
 //			Building Legend
-			TextView label = new TextView(this.context);
-//			String fractionString = "0.2f", fraction * 100; 
+			TextView label = new TextView(this.context); 
 			String labelString	 = times.get(i)[1] + ": " + fraction * 100;
-//			CharSequence labelChars = labelString.subSequence(0,
-//					labelString.length() - 1);
-//			Log.i("label", labelString);
-//			label.setText(labelString);
-//			label.requestRectangleOnScreen(new Rect(startLegendX + 50, 
-//					startLegendY, endLegendX + 175, endLegendY));
-//			label.setFrame(startLegendX + 50, 
-//					startLegendY, endLegendX + 175, endLegendY);
+
 			label.setVisibility(VISIBLE);
 			label.setTextColor(color);
 			label.setWidth(250);
 			label.setHeight(endLegendX - startLegendX);
 			label.setText(labelString.subSequence(0, 
 					labelString.length() - 1));
-//			label.setBounds(startLegendX + 100, startLegendY,
-//					endLegendX + 400, endLegendY);
 			labelList.add(label);
-//			legendList.add(legend);
-			ShapeDrawable  legendRect = new ShapeDrawable();
-			legendRect.getPaint().setColor(color);
-			legendRect.setBounds(startLegendX, startLegendY, 
-					endLegendX, endLegendY);
-			legendRectList.add(legendRect);
+//			ShapeDrawable  legendRect = new ShapeDrawable();
+//			legendRect.getPaint().setColor(color);
+//			legendRect.setBounds(startLegendX, startLegendY, 
+//					endLegendX, endLegendY);
+//			legendRectList.add(legendRect);
 			
-			
-//			Building Pie Chart
-//			float sweepAngle = fraction * 360f; 
-//			ShapeDrawable sd = new ShapeDrawable(
-//					new ArcShape(startAngle, sweepAngle));
-//			sd.getPaint().setColor(color);
-//			sd.setBounds(startX, startY, width, height);
-//			pieList.add(sd);
-//			
-////			String legendValue = times.get(i)[1] + "(" + fraction * 100 + "%)"; 
-////			Log.i("Type", legendValue);
-//			
-//			startAngle += sweepAngle;
-			
+//			Draw histogram boxes
 			ShapeDrawable sd = new ShapeDrawable(new RectShape());
 			sd.getPaint().setColor(color);
 			Float boxLength = dia * fraction;
@@ -197,13 +156,9 @@ public class TKHistogram extends View {
 		final int startLegendX = 10;
 		
 		for (int i = 0; i < coloredBoxList.size(); i++) {
-//			Log.i("drawing", "pie: " + i);
 			ShapeDrawable box = (ShapeDrawable) coloredBoxList.get(i);
-//			ShapeDrawable legend = (ShapeDrawable) legendRectList.get(i);
 			TextView label       = (TextView) labelList.get(i);
 			box.draw(canvas);
-//			legend.draw(canvas);	
-//			label.draw(canvas);
 			String labelString = (String) label.getText();
 			Paint paint = new Paint();
 			paint.setColor(label.getCurrentTextColor());
